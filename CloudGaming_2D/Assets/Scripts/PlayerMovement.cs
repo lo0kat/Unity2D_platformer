@@ -22,7 +22,9 @@ public class PlayerMovement : MonoBehaviour
     }
     void FixedUpdate(){
         isGrounded = Physics2D.OverlapArea(groundCheckLeft.position,groundCheckLeft.position);
-        this.horizontalMovement = Input.GetAxis("Horizontal")*moveSpeed*Time.deltaTime;
+         animator.SetBool("isJumping",!isGrounded);
+
+        this.horizontalMovement = Input.GetAxisRaw("Horizontal")*moveSpeed*Time.deltaTime;
         MovePlayer(this.horizontalMovement);
 
         float characterVelocity = Mathf.Abs(rb.velocity.x);
